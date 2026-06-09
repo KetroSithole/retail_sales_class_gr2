@@ -1,0 +1,2 @@
+create database stg_retail_sales
+create database dhw_retail_sales
