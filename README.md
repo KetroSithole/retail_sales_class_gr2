@@ -58,6 +58,43 @@ flowchart TB
     RAW -->|SELECT DISTINCT Continent, Country, City| DL
 ```
 
+## Role Fit (Stick-Man View)
+This diagram shows who mainly owns each part of the process.
+
+```mermaid
+flowchart LR
+    INGEST[Ingest CSV to raw_retail_sales]
+    STAGE[Build staging dimensions\nstg_dim_customer / stg_dim_location]
+    CHECKS[Data quality checks\nnulls, duplicates, row counts]
+    MODEL[Warehouse/star schema modeling]
+    BI[Dashboards and business insights]
+    ML[Feature engineering and ML experiments]
+
+    INGEST --> STAGE --> CHECKS --> MODEL --> BI
+    CHECKS --> ML
+
+    ENG["o<br/>/|\\<br/>/ \\<br/>Data Engineer"]
+    ANA["o<br/>/|\\<br/>/ \\<br/>Data Analyst"]
+    SCI["o<br/>/|\\<br/>/ \\<br/>Data Scientist"]
+
+    ENG -.owns.- INGEST
+    ENG -.owns.- STAGE
+    ENG -.owns.- CHECKS
+    ENG -.owns.- MODEL
+
+    ANA -.owns.- BI
+    ANA -.partners.- CHECKS
+
+    SCI -.owns.- ML
+    SCI -.partners.- CHECKS
+    SCI -.partners.- MODEL
+```
+
+### Role Responsibilities (Simple)
+- Data Engineer: Build pipelines, staging tables, quality checks, and warehouse structures.
+- Data Analyst: Validate business metrics, build reports, and turn data into decisions.
+- Data Scientist: Prepare features, build models, and run experiments using trusted data.
+
 ## Future Flow (Recommended)
 This is a suggested next phase for scaling your project.
 
