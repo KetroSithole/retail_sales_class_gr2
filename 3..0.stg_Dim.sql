@@ -1,41 +1,47 @@
-SELECT [Order_ID]
-      ,[Purchase_Date]
-      ,[Ship_Date]
-      ,[Returned]
-      ,[Return_Date]
-      ,[Continent]
-      ,[Country]
-      ,[City]
-      ,[Store_ID]
-      ,[Store_Name]
-      ,[Store_Type]
-      ,[Channel]
-      ,[Priority]
-      ,[Payment_Method]
-      ,[Promotion_ID]
-      ,[Promotion_Name]
-      ------------------
-      ,[Customer_ID]
-      ,[Customer_Segment]
-      ,[Loyalty_Tier]
-      ,[Salesperson_ID]
-      ,[Salesperson_Department]
-      ,[Product_ID]
-      ,[SKU]
-      ,[Product_Name]
-      ,[Category]
-      ,[Subcategory]
-      ,[Brand]
-      ,[Quantity]
-      ,[Unit_Cost]
-      ,[Unit_Price]
-      ,[Discount_Amount]
-      ,[Tax_Amount]
-      ,[Shipping_Cost]
-      ,[Gross_Sales]
-      ,[Net_Sales]
-      ,[COGS]
-      ,[Gross_Profit]
-  FROM [stg_retail_sales].[dbo].[raw_retail_sales]
+/*
+    Staging source inspection
+    Purpose: Preview all required columns from raw retail sales source.
+*/
 
-  --where Order_ID !='NULL'
+SELECT
+    [Order_ID],
+    [Purchase_Date],
+    [Ship_Date],
+    [Returned],
+    [Return_Date],
+    [Continent],
+    [Country],
+    [City],
+    [Store_ID],
+    [Store_Name],
+    [Store_Type],
+    [Channel],
+    [Priority],
+    [Payment_Method],
+    [Promotion_ID],
+    [Promotion_Name],
+    [Customer_ID],
+    [Customer_Segment],
+    [Loyalty_Tier],
+    [Salesperson_ID],
+    [Salesperson_Department],
+    [Product_ID],
+    [SKU],
+    [Product_Name],
+    [Category],
+    [Subcategory],
+    [Brand],
+    [Quantity],
+    [Unit_Cost],
+    [Unit_Price],
+    [Discount_Amount],
+    [Tax_Amount],
+    [Shipping_Cost],
+    [Gross_Sales],
+    [Net_Sales],
+    [COGS],
+    [Gross_Profit]
+FROM [stg_retail_sales].[dbo].[raw_retail_sales];
+
+-- Optional filter example:
+-- WHERE [Order_ID] <> 'NULL';
