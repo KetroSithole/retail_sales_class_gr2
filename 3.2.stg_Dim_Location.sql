@@ -1,41 +1,26 @@
-SELECT [Order_ID]
-      ,[Purchase_Date]
-      ,[Ship_Date]
-      ,[Returned]
-      ,[Return_Date]
-      ,[Continent]
-      ,[Country]
-      ,[City]
-      ,[Store_ID]
-      ,[Store_Name]
-      ,[Store_Type]
-      ,[Channel]
-      ,[Priority]
-      ,[Payment_Method]
-      ,[Promotion_ID]
-      ,[Promotion_Name]
-      ------------------
-      ,[Customer_ID]
-      ,[Customer_Segment]
-      ,[Loyalty_Tier]
-      ,[Salesperson_ID]
-      ,[Salesperson_Department]
-      ,[Product_ID]
-      ,[SKU]
-      ,[Product_Name]
-      ,[Category]
-      ,[Subcategory]
-      ,[Brand]
-      ,[Quantity]
-      ,[Unit_Cost]
-      ,[Unit_Price]
-      ,[Discount_Amount]
-      ,[Tax_Amount]
-      ,[Shipping_Cost]
-      ,[Gross_Sales]
-      ,[Net_Sales]
-      ,[COGS]
-      ,[Gross_Profit]
-  FROM [stg_retail_sales].[dbo].[raw_retail_sales]
-
-  --where Order_ID !='NULL'
+--1.EDA 
+SELECT
+    [Continent],
+    [Country],
+    [City]
+FROM
+    [stg_retail_sales].[dbo].[raw_retail_sales] --where Order_ID !='NULL'
+    --2create table 
+    create table stg_retail_sales.dbo.stg_dim_Location (
+        continent nvarchar(255),
+        country nvarchar(255),
+        city nvarchar(255)
+    ) --3 .insert into table
+insert into
+    stg_retail_sales.dbo.stg_dim_Location
+select
+    distinct [Continent],
+    [Country],
+    [City]
+FROM
+    [stg_retail_sales].[dbo].[raw_retail_sales] 
+    --4 SELECT \
+select
+    *
+from
+    stg_retail_sales.dbo.stg_dim_Location
